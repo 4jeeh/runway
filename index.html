@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RUNWAY // Swiss Minimalist Financial Ledger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles/ledger.css" />
+  </head>
+  <body>
+    <div class="ledger-shell">
+      <!-- TOP INSTRUMENT BAR -->
+      <header class="topbar">
+        <div class="topbar-brand">
+          <span class="brand-index">SYS // RWY-02</span>
+          <h1 class="brand-title">RUNWAY</h1>
+          <span class="brand-subtitle">SWISS MINIMALIST FINANCIAL LEDGER &amp; BURN ENGINE</span>
+        </div>
+
+        <div class="topbar-controls">
+          <div class="control-group">
+            <label for="scenario-select" class="control-label">PRESET SCENARIO</label>
+            <select id="scenario-select" class="swiss-select" aria-label="Preset Scenario">
+              <option value="SURPLUS_USD">01 // SURPLUS BASELINE (USD)</option>
+              <option value="DEFICIT_USD">02 // DEFICIT STRESS (USD)</option>
+              <option value="ACADEMIC_IDR">03 // CAMPUS LEDGER (IDR)</option>
+              <option value="CONTINENTAL_EUR">04 // CONTINENTAL LEDGER (EUR)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="currency-select" class="control-label">CURRENCY (FX)</label>
+            <select id="currency-select" class="swiss-select tabular" aria-label="Currency">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="IDR">IDR (Rp)</option>
+            </select>
+          </div>
+
+          <button id="export-txt-btn" type="button" class="swiss-btn">
+            EXPORT AUDIT (.TXT)
+          </button>
+        </div>
+      </header>
+
+      <!-- EXECUTIVE KPI TELEMETRY STRIP -->
+      <section class="kpi-grid" aria-label="Key Financial Metrics">
+        <article class="kpi-cell">
+          <div class="kpi-header">
+            <span class="kpi-index">01 // FINANCIAL RUNWAY</span>
+            <span id="kpi-runway-badge" class="status-pill">AUTONOMOUS</span>
+          </div>
+          <div id="kpi-runway-primary" class="kpi-value tabular">0.00 MO</div>
+          <div class="kpi-subgrid tabular">
+            <div class="kpi-subrow">
+              <span>HORIZON (DAYS)</span>
+              <span id="kpi-runway-days">0 DAYS</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>ZERO-INC GROSS RUNWAY</span>
+              <span id="kpi-runway-gross">0.00 MO</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>DEFICIT NET RUNWAY</span>
+              <span id="kpi-runway-net">INFINITE</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="kpi-cell">
+          <div class="kpi-header">
+            <span class="kpi-index">02 // MONTHLY BURN RATE</span>
+            <span id="kpi-burn-ratio-badge" class="status-pill">0.00% OF INC</span>
+          </div>
+          <div id="kpi-gross-burn" class="kpi-value tabular">$0.00</div>
+          <div class="kpi-subgrid tabular">
+            <div class="kpi-subrow">
+              <span>DAILY BURN VELOCITY</span>
+              <span id="kpi-daily-burn">$0.00 / DAY</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>NET DEFICIT BURN</span>
+              <span id="kpi-net-burn">$0.00 / MO</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>PEAK EXPENSE DRIVER</span>
+              <span id="kpi-peak-driver">—</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="kpi-cell">
+          <div class="kpi-header">
+            <span class="kpi-index">03 // NET MONTHLY CASHFLOW</span>
+            <span id="kpi-status-badge" class="status-pill">SURPLUS</span>
+          </div>
+          <div id="kpi-net-cashflow" class="kpi-value tabular">+$0.00</div>
+          <div class="kpi-subgrid tabular">
+            <div class="kpi-subrow">
+              <span>MONTHLY INFLOW</span>
+              <span id="kpi-monthly-income">$0.00</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>OPERATING MARGIN</span>
+              <span id="kpi-net-margin">+0.00%</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>ACTIVE CATEGORIES</span>
+              <span id="kpi-category-count">0 ITEMS</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="kpi-cell">
+          <div class="kpi-header">
+            <span class="kpi-index">04 // LIQUID TREASURY RESERVE</span>
+            <span class="status-pill status-neutral">CAPITAL BASE</span>
+          </div>
+          <div id="kpi-cash-reserve" class="kpi-value tabular">$0.00</div>
+          <div class="kpi-subgrid tabular">
+            <div class="kpi-subrow">
+              <span>POST-CYCLE BUFFER</span>
+              <span id="kpi-effective-buffer">$0.00</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>SAVINGS ALLOCATION</span>
+              <span id="kpi-savings-rate">0.00%</span>
+            </div>
+            <div class="kpi-subrow">
+              <span>50/30/20 COMPLIANCE</span>
+              <span id="kpi-rule-compliance">OPTIMAL</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- MAIN SWISS GRID WORKSPACE -->
+      <main class="workspace-grid">
+        <!-- LEFT PANEL: PARAMETERS, 50/30/20 MATRIX & ENTRY FORM -->
+        <aside class="panel-column">
+          <!-- CAPITAL PARAMETERS -->
+          <section class="ledger-panel">
+            <div class="panel-header">
+              <span class="panel-title">A // CAPITAL &amp; RESERVE PARAMETERS</span>
+              <span id="active-currency-tag" class="panel-meta tabular">CCY: USD</span>
+            </div>
+            <div class="panel-body">
+              <div class="field-grid">
+                <div class="field-item">
+                  <label for="input-income" class="field-label">MONTHLY INCOME INFLOW</label>
+                  <input
+                    id="input-income"
+                    type="number"
+                    min="0"
+                    step="any"
+                    class="swiss-input tabular"
+                    value="5000"
+                  />
+                </div>
+                <div class="field-item">
+                  <label for="input-reserve" class="field-label">LIQUID CASH RESERVE</label>
+                  <input
+                    id="input-reserve"
+                    type="number"
+                    min="0"
+                    step="any"
+                    class="swiss-input tabular"
+                    value="18000"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 50/30/20 ALLOCATION BENCHMARK -->
+          <section class="ledger-panel">
+            <div class="panel-header">
+              <span class="panel-title">B // 50 / 30 / 20 ALLOCATION RULE AUDIT</span>
+              <span class="panel-meta">NEEDS · WANTS · SAVINGS</span>
+            </div>
+            <div class="panel-body no-padding">
+              <table class="swiss-table compact-table tabular" aria-label="50/30/20 Rule Table">
+                <thead>
+                  <tr>
+                    <th>BUCKET</th>
+                    <th class="num-col">ACTUAL</th>
+                    <th class="num-col">SHARE</th>
+                    <th class="num-col">TARGET</th>
+                    <th class="num-col">Δ VAR</th>
+                    <th class="status-col">STATE</th>
+                  </tr>
+                </thead>
+                <tbody id="rule-503020-tbody"></tbody>
+              </table>
+              <div id="rule-bars-container" class="rule-bars-wrapper"></div>
+            </div>
+          </section>
+
+          <!-- APPEND EXPENSE FORM -->
+          <section class="ledger-panel">
+            <div class="panel-header">
+              <span class="panel-title">C // APPEND EXPENSE LINE ITEM</span>
+              <span class="panel-meta">NO DUPLICATES</span>
+            </div>
+            <form id="add-expense-form" class="panel-body" novalidate>
+              <div class="form-stack">
+                <div class="field-item">
+                  <label for="expense-category" class="field-label">CATEGORY IDENTIFIER</label>
+                  <input
+                    id="expense-category"
+                    type="text"
+                    class="swiss-input"
+                    placeholder="e.g. Server Infrastructure"
+                    required
+                  />
+                </div>
+                <div class="field-grid">
+                  <div class="field-item">
+                    <label for="expense-bucket" class="field-label">50/30/20 BUCKET</label>
+                    <select id="expense-bucket" class="swiss-select">
+                      <option value="NEEDS">NEEDS (50%)</option>
+                      <option value="WANTS">WANTS (30%)</option>
+                      <option value="SAVINGS">SAVINGS (20%)</option>
+                    </select>
+                  </div>
+                  <div class="field-item">
+                    <label for="expense-amount" class="field-label">MONTHLY OUTFLOW</label>
+                    <input
+                      id="expense-amount"
+                      type="number"
+                      min="0"
+                      step="any"
+                      class="swiss-input tabular"
+                      placeholder="0.00"
+                      required
+                    />
+                  </div>
+                </div>
+                <div id="form-error-msg" class="form-error" role="alert" hidden></div>
+                <button type="submit" class="swiss-btn swiss-btn-primary full-width">
+                  + COMMIT LINE ITEM TO LEDGER
+                </button>
+              </div>
+            </form>
+          </section>
+        </aside>
+
+        <!-- RIGHT PANEL: DATA-DENSE LEDGER TABLE & DIAGNOSTIC REPORT -->
+        <section class="main-column">
+          <div class="ledger-panel">
+            <div class="panel-header">
+              <span class="panel-title">D // CATEGORIZED MONTHLY EXPENSE LEDGER</span>
+              <span class="panel-meta tabular">SORTED BY MAGNITUDE (DESC)</span>
+            </div>
+            <div class="table-scroll">
+              <table class="swiss-table tabular" aria-label="Categorized Monthly Expense Ledger">
+                <thead>
+                  <tr>
+                    <th class="idx-col">IDX</th>
+                    <th>CATEGORY</th>
+                    <th>BUCKET</th>
+                    <th class="num-col">MONTHLY AMOUNT</th>
+                    <th class="num-col">% BURN</th>
+                    <th class="num-col">% INCOME</th>
+                    <th class="bar-col">PROPORTION</th>
+                    <th class="act-col">CMD</th>
+                  </tr>
+                </thead>
+                <tbody id="expense-ledger-tbody"></tbody>
+                <tfoot id="expense-ledger-tfoot"></tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- ADVISORY & AUDIT STREAM -->
+          <div class="ledger-panel">
+            <div class="panel-header">
+              <span class="panel-title">E // INSTITUTIONAL DIAGNOSTIC &amp; AUDIT LOG</span>
+              <span id="advisory-status-code" class="panel-meta tabular">STATE: NOMINAL</span>
+            </div>
+            <div class="panel-body">
+              <div id="advisory-banner" class="advisory-box"></div>
+              <details class="audit-preview-details">
+                <summary class="audit-summary">
+                  VIEW RAW PLAINTEXT AUDIT LEDGER (RUNWAY_AUDIT_REPORT.TXT)
+                </summary>
+                <pre id="raw-audit-output" class="raw-audit-pre tabular"></pre>
+              </details>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

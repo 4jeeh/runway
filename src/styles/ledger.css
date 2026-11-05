@@ -1,0 +1,570 @@
+/**
+ * @file ledger.css
+ * @description Swiss Minimalist Ledger / Data-Dense Financial UI Stylesheet.
+ * Strict Palette:
+ *   - Background: Dark Zinc (#09090B)
+ *   - Hairline Borders: Zinc-800 (#27272A)
+ *   - Primary High-Contrast Text: Zinc-50 (#FAFAFA)
+ *   - Surplus / Optimal Accent: Emerald (#10B981)
+ *   - Deficit / Overbudget Accent: Crimson (#F43F5E)
+ *   - Numeric Discipline: Monospace + font-variant-numeric: tabular-nums
+ */
+
+:root {
+  --bg-canvas: #09090b;
+  --bg-surface: #0d0d10;
+  --bg-elevated: #121216;
+  --border-hairline: #27272a;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --status-surplus: #10b981;
+  --status-surplus-bg: rgba(16, 185, 129, 0.08);
+  --status-deficit: #f43f5e;
+  --status-deficit-bg: rgba(244, 63, 94, 0.08);
+
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+.tabular,
+table,
+input,
+select,
+.kpi-value,
+.kpi-subgrid {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.ledger-shell {
+  max-width: 1560px;
+  margin: 0 auto;
+  border-left: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--border-hairline);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP INSTRUMENT BAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand-index {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  border: 1px solid var(--border-hairline);
+  padding: 2px 6px;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+}
+
+.brand-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.control-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* EXECUTIVE KPI STRIP */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.kpi-cell {
+  padding: 18px 20px;
+  border-right: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kpi-cell:last-child {
+  border-right: none;
+}
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kpi-index {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.kpi-subgrid {
+  border-top: 1px solid var(--border-hairline);
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.kpi-subrow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.kpi-subrow span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* STATUS PILLS & SEMANTIC ACCENTS */
+.status-pill {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border: 1px solid var(--border-hairline);
+  text-transform: uppercase;
+}
+
+.status-surplus {
+  color: var(--status-surplus);
+  border-color: var(--status-surplus);
+  background-color: var(--status-surplus-bg);
+}
+
+.status-deficit {
+  color: var(--status-deficit);
+  border-color: var(--status-deficit);
+  background-color: var(--status-deficit-bg);
+}
+
+.status-neutral {
+  color: var(--text-secondary);
+  border-color: var(--border-hairline);
+}
+
+.text-surplus {
+  color: var(--status-surplus) !important;
+}
+
+.text-deficit {
+  color: var(--status-deficit) !important;
+}
+
+.text-primary {
+  color: var(--text-primary) !important;
+}
+
+/* WORKSPACE SWISS GRID */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  flex: 1;
+}
+
+.panel-column {
+  border-right: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ledger-panel {
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-canvas);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-hairline);
+  background-color: var(--bg-surface);
+}
+
+.panel-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+.panel-meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.panel-body {
+  padding: 16px;
+}
+
+.panel-body.no-padding {
+  padding: 0;
+}
+
+/* FORM CONTROLS & INPUTS */
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.swiss-input,
+.swiss-select {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.12s ease;
+}
+
+.swiss-input:focus,
+.swiss-select:focus {
+  border-color: var(--text-primary);
+}
+
+.swiss-btn {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 0;
+  text-transform: uppercase;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.swiss-btn:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--text-secondary);
+}
+
+.swiss-btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-canvas);
+  border-color: var(--text-primary);
+}
+
+.swiss-btn-primary:hover {
+  background-color: #d4d4d8;
+  color: var(--bg-canvas);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-error {
+  font-size: 11px;
+  color: var(--status-deficit);
+  border: 1px solid var(--status-deficit);
+  background-color: var(--status-deficit-bg);
+  padding: 6px 10px;
+}
+
+/* TABLES */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.swiss-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.swiss-table th,
+.swiss-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--border-hairline);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.swiss-table th:last-child,
+.swiss-table td:last-child {
+  border-right: none;
+}
+
+.swiss-table thead th {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  text-transform: uppercase;
+}
+
+.swiss-table tbody tr:hover {
+  background-color: var(--bg-surface);
+}
+
+.swiss-table tfoot td {
+  background-color: var(--bg-surface);
+  font-weight: 700;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.compact-table th,
+.compact-table td {
+  padding: 7px 10px;
+  font-size: 11px;
+}
+
+.num-col {
+  text-align: right !important;
+}
+
+.idx-col {
+  width: 48px;
+  color: var(--text-muted);
+}
+
+.status-col,
+.act-col {
+  text-align: center !important;
+  width: 68px;
+}
+
+.bar-col {
+  width: 150px;
+}
+
+.bucket-tag {
+  font-size: 10px;
+  padding: 1px 5px;
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
+
+/* PROPORTION METER BARS */
+.meter-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  position: relative;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  background-color: var(--text-primary);
+}
+
+.meter-fill.fill-surplus {
+  background-color: var(--status-surplus);
+}
+
+.meter-fill.fill-deficit {
+  background-color: var(--status-deficit);
+}
+
+.rule-bars-wrapper {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rule-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.del-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-hairline);
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.del-btn:hover {
+  color: var(--status-deficit);
+  border-color: var(--status-deficit);
+}
+
+/* ADVISORY & RAW AUDIT */
+.advisory-box {
+  padding: 12px 14px;
+  border: 1px solid var(--border-hairline);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.advisory-surplus {
+  border-color: var(--status-surplus);
+  background-color: var(--status-surplus-bg);
+  color: var(--text-primary);
+}
+
+.advisory-deficit {
+  border-color: var(--status-deficit);
+  background-color: var(--status-deficit-bg);
+  color: var(--text-primary);
+}
+
+.audit-preview-details {
+  border: 1px solid var(--border-hairline);
+}
+
+.audit-summary {
+  padding: 8px 12px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background-color: var(--bg-surface);
+  user-select: none;
+}
+
+.raw-audit-pre {
+  padding: 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  background-color: var(--bg-canvas);
+  overflow-x: auto;
+  border-top: 1px solid var(--border-hairline);
+}
+
+@media (max-width: 1180px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+  .panel-column {
+    border-right: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

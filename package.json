@@ -1,0 +1,27 @@
+{
+  "name": "runway",
+  "version": "2.0.0",
+  "description": "Swiss Minimalist Personal & Venture Financial Ledger — Burn Rate, Financial Runway, and 50/30/20 Allocation Engine",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "simulate": "node src/cli.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "fintech",
+    "runway",
+    "burn-rate",
+    "financial-ledger",
+    "swiss-design",
+    "50-30-20-rule",
+    "multi-currency"
+  ],
+  "author": "4jeeh",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
