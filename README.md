@@ -17,7 +17,7 @@
 
 Originally conceived as a monolithic procedural C++ university assignment (`Simulasi Manajemen Keuangan Mahasiswa.cpp`), **`runway`** re-architects the foundational cashflow logic into a decoupled, zero-dependency ES module core (`src/core/`) powering both an interactive **Data-Dense Web Terminal** and a deterministic **CLI Simulation & Verification Suite**.
 
-### 1.1 Design Philosophy (Strict Anti-AI-Slop & High Taste)
+### 1.1 Design Philosophy (Swiss International Typographic & High Taste)
 
 Engineered in accordance with Swiss International Typographic Style (*Josef Müller-Brockmann* grid systems) and institutional financial terminals:
 
